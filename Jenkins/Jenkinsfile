@@ -12,13 +12,11 @@ pipeline {
             steps {
                 script {
                    gv = load "Jenkins/script.groovy"
+            echo "Loaded script: ${gv}"  // Check if gv is loaded correctly
+            echo "Methods in gv: ${gv.getClass().methods}"  // List all available methods                    
                 }
             }
-        }
-        script {
-            echo "Loaded script: ${gv}"  // Check if gv is loaded correctly
-            echo "Methods in gv: ${gv.getClass().methods}"  // List all available methods
-        }        
+        }     
         stage("build") {
             steps {
                 script {
