@@ -29,9 +29,9 @@ pipeline {
         stage("Build and Push the Image") {
             steps {
                 script {
-                    buildDockerImage 'aeramzy9/java-maven-app:latest'
+                    buildImage 'aeramzy9/java-maven-app:latest'
                     dockerLogin()
-                    dockerPush'aeramzy9/java-maven-app:latest'
+                    dockerPush 'aeramzy9/java-maven-app:latest'
                 }
             }
         }
