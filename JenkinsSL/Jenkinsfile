@@ -1,0 +1,39 @@
+#!/usr/bin/env groovy
+@Library('jenkins-shared-library')
+def gv
+
+pipeline {
+    agent any
+    tools {
+        // Reference the Maven tool from Global Tool Configuration
+        maven 'maven'  // Use the name you specified in Global Tool Configuration
+    }    
+    parameters {
+        choice(name: 'VERSION', choices: ['1.1.0', '1.2.0', '1.3.0'], description: '')
+            }
+    stages {
+        stage("init") {
+            steps {
+                script {
+                   gv = load "Jenkins/script.groovy"
+                }
+            }
+        }      
+        stage("Build the jar ") {
+            steps {
+                script {
+                   buildJar()
+                }
+            }
+        }
+        stage("Build and Push the Image") {
+            steps {
+                script {
+                    buildDockerImage 'aeramzy9/java-maven-app:latest'
+                    dockerLogin()
+                    dockerPush'aeramzy9/java-maven-app:latest'
+                }
+            }
+        }
+    }
+}
