@@ -11,9 +11,7 @@ pipeline {
         stage("init") {
             steps {
                 script {
-                   gv = load "Jenkins/script.groovy"
-            echo "Loaded script: ${gv}"  // Check if gv is loaded correctly
-            echo "Methods in gv: ${gv.getClass().methods}"  // List all available methods                    
+                   gv = load "script.groovy"                   
                 }
             }
         }     
