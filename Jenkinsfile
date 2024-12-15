@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 pipeline {
-    agent any
+    agent any    
     stages {
         stage('build') {
             steps {
@@ -11,15 +11,17 @@ pipeline {
             }
         }
         stage('test') {
+            
             steps {
                 script {
                     echo "Testing the application..."
                 }
             }
-        }
+    }
         stage('deploy') {
             steps {
                 script {
+
                     echo "Deploying the application..."
                 }
             }
