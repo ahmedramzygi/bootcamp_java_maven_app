@@ -6,7 +6,7 @@ pipeline {
         stage('build') {
             steps {
                 script {
-                    echo "Building the application from ${BRANCH_NAME}"
+                    echo "Building the application from ${env.BRANCH_NAME}"
                 }
             }
         }
